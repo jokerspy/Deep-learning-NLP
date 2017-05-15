@@ -57,15 +57,14 @@ class RNNCell(tf.contrib.rnn.RNNCell):
             a pair of the output vector and the new state vector.
         """
         scope = scope or type(self).__name__
-
         # It's always a good idea to scope variables in functions lest they
         # be defined elsewhere!
         with tf.variable_scope(scope):
             ### YOUR CODE HERE (~6-10 lines)
             initializer = tf.contrib.layers.xavier_initializer()
-            Wx = tf.get_variable('W_x', initializer=initializer)
-            Wh = tf.get_variable('W_h', initializer=initializer)
-            b = tf.get_variable('b', initializer=initializer)
+            Wx = tf.get_variable('W_x', shape=[self.input_size,self.state_size], initializer=initializer)
+            Wh = tf.get_variable('W_h', shape=[self.state_size,self.state_size], initializer=initializer)
+            b = tf.get_variable('b', shape=self.state_size, initializer=initializer)
             new_state = tf.sigmoid(tf.matmul(inputs, Wx) + tf.matmul(state, Wh) + b)
             #pass
             ### END YOUR CODE ###

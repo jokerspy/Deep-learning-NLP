@@ -1,0 +1,10 @@
+*.bat
+*.pkl
+*.sh
+*.pyc
+*.png
+*.txt
+*.npy
+Makefile
+*.xml
+*.conll
